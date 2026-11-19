@@ -1,0 +1,136 @@
+---
+import { buildWhatsAppUrl } from '../config/site';
+---
+
+<section class="relative min-h-[92vh] flex items-center pt-8 pb-16 md:py-20 overflow-hidden bg-iron-950">
+  <!-- Subtle forge ambient orange glow in background -->
+  <div class="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-forge-600/15 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute bottom-10 right-10 w-[500px] h-[500px] bg-forge-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      
+      <!-- Left Column: Copy & High Conversion CTAs -->
+      <div class="lg:col-span-6 flex flex-col justify-center text-left">
+        
+        <!-- Technical Badge with Official Logo Emblem -->
+        <div class="inline-flex items-center gap-3 self-start px-3.5 py-2 rounded-xl bg-zinc-900/90 border border-zinc-700/80 font-mono text-xs text-zinc-300 mb-6 shadow-md">
+          <img src="/images/logo.webp" alt="Herrería Tony" class="w-6 h-6 rounded-full object-cover shrink-0" />
+          <span class="w-2 h-2 rounded-full bg-forge-500 animate-pulse"></span>
+          <span class="tracking-wider text-zinc-200 font-semibold">TALLER DE HERRERÍA & ALBAÑILERÍA DE OBRA • +45 AÑOS</span>
+        </div>
+
+        <!-- Main H1 Title -->
+        <h1 class="font-display text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight text-zinc-100 uppercase leading-[0.95] mb-6">
+          MÁS DE 45 AÑOS <span class="text-transparent bg-clip-text bg-gradient-to-r from-forge-500 via-forge-400 to-amber-300">DOMANDO EL HIERRO</span> Y CONSTRUYENDO OBRAS.
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="text-base sm:text-lg md:text-xl text-zinc-300 font-normal leading-relaxed mb-8 max-w-2xl">
+          Especialistas en herrería pesada, forja tradicional, portones, rejas de seguridad, escaleras y albañilería integral. Mirá las fotos de nuestros trabajos reales hechos para durar toda la vida.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-10">
+          <!-- Primary CTA WhatsApp -->
+          <a
+            href={buildWhatsAppUrl("Hola Tony! Quiero consultar presupuesto para un trabajo de herrería / albañilería. Te comparto lo que necesito:")}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-3 px-6 py-4 rounded-xl bg-forge-500 hover:bg-forge-400 text-zinc-950 font-bold font-mono text-sm tracking-wider uppercase transition-all duration-200 shadow-[0_4px_24px_rgba(234,88,12,0.4)] hover:shadow-[0_6px_32px_rgba(234,88,12,0.6)] hover:-translate-y-0.5 active:translate-y-0"
+          >
+            <!-- WhatsApp Icon -->
+            <svg class="w-5 h-5 fill-current shrink-0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+            </svg>
+            <span>Consultar por WhatsApp</span>
+          </a>
+
+          <!-- Secondary CTA -->
+          <a
+            href="#trabajos"
+            class="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl border border-zinc-700 bg-iron-850 hover:bg-zinc-800 text-zinc-200 font-mono text-sm tracking-wider uppercase transition-colors"
+          >
+            <span>Ver Trabajos Reales</span>
+            <span class="text-forge-500">↓</span>
+          </a>
+        </div>
+
+        <!-- Micro Guarantees / Technical specs -->
+        <div class="grid grid-cols-3 gap-3 pt-6 border-t border-zinc-800/80 font-mono text-xs text-zinc-400">
+          <div>
+            <div class="text-forge-400 font-bold">100% ARTESANAL</div>
+            <div class="text-[11px] text-zinc-500">Forja y herrería pesada</div>
+          </div>
+          <div>
+            <div class="text-zinc-200 font-bold">ALBAÑILERÍA INTEGRAL</div>
+            <div class="text-[11px] text-zinc-500">Muros, losas y reformas</div>
+          </div>
+          <div>
+            <div class="text-emerald-400 font-bold">PRESUPUESTO 0$</div>
+            <div class="text-[11px] text-zinc-500">Asesoramiento directo</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Real Workshop Action Image Showcase -->
+      <div class="lg:col-span-6 relative">
+        <div class="relative group">
+          <!-- Orange Glow Backdrop -->
+          <div class="absolute -inset-1.5 bg-gradient-to-r from-forge-500/30 to-amber-500/20 rounded-3xl blur-xl opacity-70 group-hover:opacity-100 transition-opacity duration-500"></div>
+          
+          <!-- Image Frame Card -->
+          <div class="relative rounded-2xl overflow-hidden border-2 border-zinc-700 bg-zinc-900 shadow-2xl">
+            <!-- Header bar -->
+            <div class="flex items-center justify-between px-4 py-2.5 bg-zinc-950/90 border-b border-zinc-800 font-mono text-xs text-zinc-400">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-forge-500 animate-pulse"></span>
+                <span class="text-zinc-200 font-bold">TALLER HERRERÍA TONY</span>
+              </div>
+              <span class="text-forge-400 font-semibold text-[11px]">TRABAJO EN PROCESO // BUENOS AIRES</span>
+            </div>
+
+            <!-- Main Action Image -->
+            <div class="relative aspect-[16/11] overflow-hidden">
+              <img
+                src="/images/taller-corte-hierro.webp"
+                alt="Corte de hierro con amoladora en el taller de Herrería Tony"
+                class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                loading="eager"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent"></div>
+            </div>
+
+            <!-- Overlay Floating Stamp Badge with Official Logo -->
+            <div class="absolute top-14 right-4 bg-zinc-950/90 border-2 border-forge-500/50 p-2.5 rounded-2xl shadow-xl flex items-center gap-3 backdrop-blur-md">
+              <img src="/images/logo.webp" alt="Herrería Tony Sello" class="w-14 h-14 rounded-full object-cover border border-zinc-700" />
+              <div class="font-mono text-left">
+                <div class="text-[10px] text-zinc-400 uppercase">SELLO OFICIAL</div>
+                <div class="text-xs font-bold text-zinc-100">HERRERÍA TONY</div>
+                <div class="text-[10px] text-forge-400 font-bold">DESDE 1980 • BS AS</div>
+              </div>
+            </div>
+
+            <!-- Bottom specs ticker -->
+            <div class="grid grid-cols-3 divide-x divide-zinc-800 bg-zinc-950/95 p-3 text-center font-mono text-xs">
+              <div>
+                <div class="text-[10px] text-zinc-500">ESPECIALIDAD</div>
+                <div class="text-zinc-200 font-bold text-xs mt-0.5">Herrería Pesada</div>
+              </div>
+              <div>
+                <div class="text-[10px] text-zinc-500">SOLDADURA</div>
+                <div class="text-zinc-200 font-bold text-xs mt-0.5">MIG / TIG / Forja</div>
+              </div>
+              <div>
+                <div class="text-[10px] text-zinc-500">CONSTRUCCIÓN</div>
+                <div class="text-forge-400 font-bold text-xs mt-0.5">Albañilería de Obra</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

@@ -1,0 +1,47 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import AuthorityBar from '../components/AuthorityBar.astro';
+import FurnitureCatalog from '../components/FurnitureCatalog.astro';
+import Catalog from '../components/Catalog.astro';
+import SketchToIron from '../components/SketchToIron.astro';
+import ProcessSection from '../components/ProcessSection.astro';
+import InteractiveEstimator from '../components/InteractiveEstimator.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+---
+
+<Layout>
+  <!-- Sticky Navigation Bar -->
+  <Navbar />
+
+  <!-- Hero Section with Blueprint CAD Grill -->
+  <main>
+    <Hero />
+
+    <!-- Authority Metrics Strip -->
+    <AuthorityBar />
+
+    <!-- Furniture catalog available for direct inquiry -->
+    <FurnitureCatalog />
+
+    <!-- Services and completed work -->
+    <Catalog />
+
+    <!-- Differential Section: "Traé tu boceto o idea" -->
+    <SketchToIron />
+
+    <!-- 4-Step Craft Process -->
+    <ProcessSection />
+
+    <!-- Direct Quote / Estimator Tool -->
+    <InteractiveEstimator />
+  </main>
+
+  <!-- Footer -->
+  <Footer />
+
+  <!-- Floating WhatsApp CTA Button -->
+  <FloatingWhatsApp />
+</Layout>

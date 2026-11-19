@@ -1,0 +1,48 @@
+<script>
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!reduceMotion && 'IntersectionObserver' in window) {
+    const sections = Array.from(document.querySelectorAll('main > section:not(:first-child)'));
+    const targets: HTMLElement[] = [];
+
+    sections.forEach((section) => {
+      const candidates = Array.from(
+        section.querySelectorAll<HTMLElement>('h2, article, figure, form, .grid > div, [data-scroll-reveal]')
+      );
+
+      const topLevelCandidates = candidates.filter((candidate) => {
+        return !candidates.some((other) => other !== candidate && other.contains(candidate));
+      });
+
+      if (topLevelCandidates.length > 0) {
+        targets.push(...topLevelCandidates);
+      } else if (section instanceof HTMLElement) {
+        targets.push(section);
+      }
+    });
+
+    const footerContent = document.querySelector<HTMLElement>('footer > div');
+    if (footerContent) targets.push(footerContent);
+
+    const observer = new IntersectionObserver(
+      (entries, currentObserver) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          entry.target.classList.add('is-scroll-visible');
+          currentObserver.unobserve(entry.target);
+        });
+      },
+      {
+        rootMargin: '0px 0px -8% 0px',
+        threshold: 0.08,
+      }
+    );
+
+    targets.forEach((target, index) => {
+      target.classList.add('scroll-reveal');
+      target.style.setProperty('--scroll-reveal-delay', `${(index % 4) * 70}ms`);
+      observer.observe(target);
+    });
+  }
+</script>

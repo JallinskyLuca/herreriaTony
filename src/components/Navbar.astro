@@ -1,0 +1,189 @@
+---
+import { Menu, MessageCircle, X } from 'lucide-astro';
+import { siteConfig, buildWhatsAppUrl } from '../config/site';
+
+const homePrefix = Astro.url.pathname === '/' ? '' : '/';
+const homeHref = Astro.url.pathname === '/' ? '#' : '/';
+const navItems = [
+  { label: 'Catálogo', href: `${homePrefix}#catalogo` },
+  { label: 'Trabajos', href: `${homePrefix}#trabajos` },
+  { label: 'Tu idea', href: `${homePrefix}#boceto` },
+  { label: 'Proceso', href: `${homePrefix}#proceso` },
+  { label: 'Cotizador', href: `${homePrefix}#cotizador` },
+];
+
+const quoteUrl = buildWhatsAppUrl('Hola Tony! Me gustaría pedir un presupuesto para un trabajo de herrería / albañilería.');
+---
+
+<header class="sticky top-0 z-50 w-full border-b border-zinc-800 bg-iron-950/95 backdrop-blur-md">
+  <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 xl:h-[4.5rem] xl:px-8">
+    <a href={homeHref} aria-label="Ir al inicio" class="flex items-center gap-2.5 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-forge-500">
+      <img src="/images/logo.webp" alt="" width="512" height="512" class="size-10 shrink-0 rounded-full object-cover xl:size-11" loading="eager" />
+      <span class="whitespace-nowrap font-display text-[1.35rem] font-bold uppercase leading-none tracking-wide text-zinc-100 xl:text-2xl">
+        Herrería <span class="text-forge-500">Tony</span>
+      </span>
+    </a>
+
+    <nav aria-label="Navegación principal" class="hidden items-center gap-7 text-sm font-medium text-zinc-300 xl:flex">
+      {navItems.map((item) => (
+        <a href={item.href} class="transition-colors hover:text-zinc-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-forge-500">
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
+    <a
+      href={quoteUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="hidden items-center justify-center gap-2 rounded-lg bg-forge-500 px-4 py-2.5 text-sm font-semibold text-zinc-950 transition-colors hover:bg-forge-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-forge-400 xl:inline-flex"
+    >
+      <MessageCircle aria-hidden="true" class="size-4" stroke-width={2.25} />
+      Pedir presupuesto
+    </a>
+
+    <button
+      type="button"
+      data-menu-open
+      aria-expanded="false"
+      aria-controls="mobile-navigation"
+      aria-label="Abrir menú"
+      class="inline-flex size-11 items-center justify-center rounded-xl border border-zinc-700 bg-iron-850 text-zinc-100 transition-colors hover:border-forge-500 hover:text-forge-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forge-500 xl:hidden"
+    >
+      <Menu aria-hidden="true" class="size-6" stroke-width={2} />
+    </button>
+  </div>
+</header>
+
+<div data-mobile-menu class="mobile-menu fixed inset-0 z-[100] xl:hidden" aria-hidden="true">
+  <button type="button" data-menu-backdrop tabindex="-1" aria-label="Cerrar menú" class="menu-backdrop absolute inset-0 bg-zinc-950/75 backdrop-blur-sm"></button>
+
+  <aside id="mobile-navigation" aria-label="Menú móvil" class="menu-panel absolute right-0 top-0 flex h-[100dvh] w-[min(88vw,24rem)] flex-col border-l border-zinc-700 bg-iron-950 shadow-[-20px_0_60px_rgba(0,0,0,0.55)]">
+    <div class="flex h-16 shrink-0 items-center justify-between border-b border-zinc-800 px-5">
+      <div class="flex items-center gap-2.5">
+        <img src="/images/logo.webp" alt="" width="512" height="512" class="size-10 rounded-full object-cover" loading="eager" />
+        <p class="font-display text-xl font-bold uppercase leading-none tracking-wide text-zinc-100">Herrería <span class="text-forge-500">Tony</span></p>
+      </div>
+      <button type="button" data-menu-close aria-label="Cerrar menú" class="inline-flex size-10 items-center justify-center rounded-lg border border-zinc-700 text-zinc-300 transition-colors hover:border-forge-500 hover:text-forge-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forge-500">
+        <X aria-hidden="true" class="size-5" stroke-width={2} />
+      </button>
+    </div>
+
+    <div class="flex flex-1 flex-col overflow-y-auto px-5 pb-6 pt-7">
+      <nav aria-label="Navegación móvil">
+        <ul class="divide-y divide-zinc-800 border-y border-zinc-800">
+          {navItems.map((item) => (
+            <li>
+              <a data-menu-link href={item.href} class="group flex min-h-14 items-center py-2.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forge-500">
+                <span class="text-lg font-medium text-zinc-100 transition-colors group-hover:text-forge-400">{item.label}</span>
+                <span aria-hidden="true" class="ml-auto text-zinc-600 transition-transform group-hover:translate-x-1 group-hover:text-forge-500">›</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <div class="mt-auto pt-7">
+        <a
+          data-menu-link
+          href={quoteUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex min-h-14 items-center justify-center gap-3 rounded-xl bg-forge-500 px-5 py-3 font-mono text-sm font-bold uppercase tracking-wider text-zinc-950 transition-colors hover:bg-forge-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-forge-400"
+        >
+          <MessageCircle aria-hidden="true" class="size-5" stroke-width={2.25} />
+          Pedir presupuesto
+        </a>
+        <div class="mt-5 space-y-1.5 border-t border-zinc-800 pt-5 text-sm text-zinc-400">
+          <a href={buildWhatsAppUrl()} target="_blank" rel="noopener noreferrer" class="block font-semibold text-zinc-200 hover:text-forge-400">{siteConfig.whatsappDisplay}</a>
+          <p class="text-xs leading-relaxed">{siteConfig.workshopHours}</p>
+        </div>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<script>
+  const mobileMenu = document.querySelector<HTMLElement>('[data-mobile-menu]');
+  const openButton = document.querySelector<HTMLButtonElement>('[data-menu-open]');
+  const closeButton = mobileMenu?.querySelector<HTMLButtonElement>('[data-menu-close]');
+  const backdrop = mobileMenu?.querySelector<HTMLButtonElement>('[data-menu-backdrop]');
+  const menuLinks = mobileMenu?.querySelectorAll<HTMLAnchorElement>('[data-menu-link]');
+  let lastFocused: HTMLElement | null = null;
+
+  function openMenu() {
+    if (!mobileMenu || !openButton || !closeButton) return;
+    lastFocused = document.activeElement instanceof HTMLElement ? document.activeElement : openButton;
+    mobileMenu.dataset.open = 'true';
+    mobileMenu.setAttribute('aria-hidden', 'false');
+    openButton.setAttribute('aria-expanded', 'true');
+    document.documentElement.classList.add('mobile-nav-open');
+    requestAnimationFrame(() => closeButton.focus());
+  }
+
+  function closeMenu(restoreFocus = true) {
+    if (!mobileMenu || !openButton) return;
+    delete mobileMenu.dataset.open;
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    openButton.setAttribute('aria-expanded', 'false');
+    document.documentElement.classList.remove('mobile-nav-open');
+    if (restoreFocus) lastFocused?.focus();
+  }
+
+  openButton?.addEventListener('click', openMenu);
+  closeButton?.addEventListener('click', () => closeMenu());
+  backdrop?.addEventListener('click', () => closeMenu());
+  menuLinks?.forEach((link) => link.addEventListener('click', () => closeMenu(false)));
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && mobileMenu?.dataset.open === 'true') closeMenu();
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 1280 && mobileMenu?.dataset.open === 'true') closeMenu(false);
+  });
+</script>
+
+<style>
+  :global(html.mobile-nav-open) {
+    overflow: hidden;
+  }
+
+  .mobile-menu {
+    pointer-events: none;
+    visibility: hidden;
+    transition: visibility 0s linear 280ms;
+  }
+
+  .menu-backdrop {
+    opacity: 0;
+    transition: opacity 220ms ease;
+  }
+
+  .menu-panel {
+    transform: translateX(100%);
+    transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .mobile-menu[data-open='true'] {
+    pointer-events: auto;
+    visibility: visible;
+    transition-delay: 0s;
+  }
+
+  .mobile-menu[data-open='true'] .menu-backdrop {
+    opacity: 1;
+  }
+
+  .mobile-menu[data-open='true'] .menu-panel {
+    transform: translateX(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mobile-menu,
+    .menu-backdrop,
+    .menu-panel {
+      transition-duration: 0.01ms;
+    }
+  }
+</style>

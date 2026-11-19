@@ -1,0 +1,43 @@
+---
+import { siteConfig } from '../config/site';
+---
+
+<section class="relative z-20 border-y border-zinc-800 bg-iron-900/90 py-10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
+      {siteConfig.metrics.map((metric, idx) => (
+        <div class="relative flex flex-col p-5 rounded-xl border border-zinc-800 bg-iron-850/80 cad-corner-tl group hover:border-forge-500/40 transition-colors">
+          <!-- Top Technical Index -->
+          <div class="flex items-center justify-between font-mono text-[11px] text-zinc-500 mb-2">
+            <span>INDEX_0{idx + 1}</span>
+            <span class="text-forge-500 font-bold">★ VERIFICADO</span>
+          </div>
+
+          <!-- Big Industrial Metric Number -->
+          <div class="flex items-baseline gap-2 mb-2">
+            <span class="font-display text-5xl md:text-6xl font-bold tracking-tight text-zinc-100 group-hover:text-forge-400 transition-colors">
+              {metric.value}
+            </span>
+            <span class="font-mono text-sm uppercase text-forge-500 font-bold">
+              {metric.unit}
+            </span>
+          </div>
+
+          <!-- Label & Description -->
+          <h3 class="font-mono text-xs uppercase tracking-wider text-zinc-200 font-bold mb-1">
+            {metric.label}
+          </h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">
+            {metric.description}
+          </p>
+
+          <!-- Subtle bottom CAD ruler line -->
+          <div class="mt-4 pt-2 border-t border-zinc-800/80 flex items-center justify-between text-[10px] font-mono text-zinc-600">
+            <span>SPEC: HIERRO MACIZO</span>
+            <span>TOL: 0.0mm</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

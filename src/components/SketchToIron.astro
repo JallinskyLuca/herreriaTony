@@ -1,0 +1,144 @@
+---
+import { Camera, ChevronRight, PencilRuler, ShieldCheck } from 'lucide-astro';
+import { buildWhatsAppUrl } from '../config/site';
+
+const steps = [
+  { Icon: Camera, title: 'Tu foto o dibujo', description: 'Traé un dibujo en papel o enviá una foto o un plano.' },
+  { Icon: PencilRuler, title: 'Asesoramiento', description: 'Te ayudamos con ideas, materiales y medidas.' },
+  { Icon: ShieldCheck, title: 'Presupuesto sin cargo', description: 'Conocé el costo de tu proyecto sin compromiso.' },
+];
+---
+
+<section id="boceto" aria-labelledby="boceto-titulo" class="sketch-section relative isolate scroll-mt-28 overflow-hidden bg-iron-950 text-zinc-100">
+  <div class="sketch-backdrop pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
+    <img
+      src="/images/herrero-boceto-taller.webp"
+      width="1672"
+      height="941"
+      alt=""
+      class="sketch-photo absolute object-cover"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+
+  <div class="relative mx-auto max-w-screen-2xl px-4 pb-9 sm:px-8 lg:px-12 lg:py-10 xl:py-12">
+    <p class="mb-4 flex items-center gap-3 font-mono text-xs font-bold uppercase tracking-[0.2em] text-zinc-100 sm:gap-5 sm:text-sm lg:mb-5">
+      <span aria-hidden="true" class="h-0.5 w-8 shrink-0 bg-forge-500 sm:w-14 lg:w-20"></span>
+      Cero complicaciones técnicas
+    </p>
+
+    <h2 id="boceto-titulo" class="sketch-title uppercase">
+      <span class="block">¿No tenés plano?</span>
+      <span class="block text-forge-500">Traé tu dibujo en papel</span>
+      <span class="block italic">o foto de referencia.</span>
+    </h2>
+
+    <div aria-hidden="true" class="my-3 h-0.5 w-24 bg-forge-500 sm:w-32"></div>
+
+    <p class="max-w-[43rem] text-base leading-normal text-zinc-100 sm:text-lg lg:w-[54%]">
+      No necesitás ser arquitecto ni saber de espesores de perfiles.
+      Con más de 45 años en el oficio, <strong class="font-bold text-forge-400">Tony entiende lo que necesitás</strong>
+      con solo ver un dibujo en una servilleta, una captura de Pinterest o las fotos de tu espacio.
+    </p>
+
+    <ul role="list" class="mb-6 mt-4 grid max-w-[44rem] divide-y divide-forge-500/70 sm:grid-cols-3 sm:divide-x sm:divide-y-0 lg:mb-7 lg:mt-6 lg:w-[58%]">
+      {steps.map(({ Icon, title, description }) => (
+        <li class="flex items-center gap-4 py-2.5 sm:flex-col sm:gap-1.5 sm:px-3 sm:py-1 sm:text-center lg:px-4">
+          <Icon aria-hidden="true" stroke-width={1.5} class="size-7 shrink-0 text-forge-500 sm:size-9 xl:size-10" />
+          <div>
+            <h3 class="sketch-label text-base font-semibold uppercase leading-tight xl:text-xl">{title}</h3>
+            <p class="mt-1 text-sm leading-snug text-zinc-200">{description}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+
+    <div class="flex flex-wrap items-center gap-x-5 gap-y-3">
+      <a
+        href={buildWhatsAppUrl("Hola Tony! Tengo una foto / idea en mente y quiero consultarte si se puede fabricar o construir:")}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="sketch-label inline-flex w-full items-center justify-center gap-3 rounded-full bg-forge-500 px-4 py-3 text-center text-base font-bold uppercase leading-tight text-zinc-950 transition-colors hover:bg-forge-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-forge-400 sm:w-auto sm:px-6 sm:text-lg"
+      >
+        <svg aria-hidden="true" class="size-6 shrink-0 fill-current" viewBox="0 0 24 24">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.651-1.653-1.948-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.199.05-.371-.025-.52-.074-.149-.669-1.612-.916-2.199-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.371-.273.297-1.04 1.015-1.04 2.475s1.064 2.871 1.213 3.069c.149.198 2.095 3.2 5.077 4.487.71.306 1.263.489 1.694.625.711.226 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.05 0C5.495 0 .16 5.334.157 11.89c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.88 11.88 0 005.684 1.448h.005c6.554 0 11.887-5.334 11.89-11.891a11.82 11.82 0 00-3.48-8.413A11.814 11.814 0 0012.05 0zm0 21.785h-.004a9.87 9.87 0 01-5.03-1.377l-.36-.215-3.743.982.998-3.648-.235-.374a9.87 9.87 0 01-1.51-5.262c.002-5.451 4.434-9.882 9.887-9.882a9.82 9.82 0 016.987 2.898 9.82 9.82 0 012.892 6.993c-.003 5.45-4.435 9.885-9.882 9.885z" />
+        </svg>
+        <span>Enviar foto o dibujo por WhatsApp</span>
+        <ChevronRight aria-hidden="true" stroke-width={2.5} class="size-5 shrink-0" />
+      </a>
+      <p class="sketch-reply w-full text-center text-sm sm:w-auto sm:border-l-2 sm:border-forge-500 sm:py-1 sm:pl-4 sm:text-left xl:text-lg">
+        Respuesta directa en el día.
+      </p>
+    </div>
+
+    <img
+      src="/images/logo.webp"
+      width="512"
+      height="512"
+      alt=""
+      class="absolute bottom-7 right-12 hidden w-[clamp(5.5rem,9vw,8.5rem)] rounded-full lg:block"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+</section>
+
+<style>
+  .sketch-section {
+    --sketch-photo-height: clamp(17rem, 72vw, 27rem);
+    padding-top: clamp(9rem, 44vw, 18rem);
+  }
+
+  .sketch-photo {
+    width: 100%;
+    height: var(--sketch-photo-height);
+    object-position: 59% 30%;
+  }
+
+  .sketch-backdrop::after {
+    position: absolute;
+    inset: 0;
+    content: '';
+    background: linear-gradient(180deg, #121215 0, transparent 2rem, rgba(18, 18, 21, 0.1) 6rem, #121215 var(--sketch-photo-height));
+  }
+
+  .sketch-title {
+    font-family: 'Bebas Neue', Impact, 'Oswald', 'Arial Narrow', sans-serif;
+    font-size: clamp(1.8125rem, 8.2vw, 3.875rem);
+    line-height: 0.99;
+  }
+
+  .sketch-label {
+    font-family: 'Oswald', 'Arial Narrow', system-ui, sans-serif;
+  }
+
+  @media (min-width: 1024px) {
+    .sketch-section {
+      padding-top: 0;
+    }
+
+    .sketch-photo {
+      inset: 0 0 0 23%;
+      width: 77%;
+      height: 100%;
+      object-position: 45% center;
+    }
+
+    .sketch-backdrop::after {
+      background:
+        linear-gradient(0deg, #121215 0, transparent 3.5rem, transparent calc(100% - 3rem), #121215 100%),
+        linear-gradient(90deg, #121215 12%, rgba(18, 18, 21, 0.98) 25%, rgba(18, 18, 21, 0.9) 39%, rgba(18, 18, 21, 0.67) 53%, transparent 76%);
+    }
+
+    .sketch-title {
+      width: 68%;
+      font-size: clamp(2.625rem, 4.6vw, 4.75rem);
+    }
+
+    .sketch-reply {
+      text-shadow: 0 1px 5px #121215, 0 1px 2px #121215;
+    }
+  }
+</style>
+

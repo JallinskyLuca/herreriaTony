@@ -1,0 +1,97 @@
+---
+import { Clock3, ExternalLink, MapPin, MessageCircle } from 'lucide-astro';
+import { siteConfig, buildWhatsAppUrl } from '../config/site';
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="border-t border-zinc-800 bg-zinc-950">
+  <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-16">
+    <div class="grid gap-10 border-b border-zinc-800 pb-12 md:grid-cols-2 lg:grid-cols-12">
+      <div class="lg:col-span-4">
+        <a href="/" aria-label="Ir al inicio" class="inline-flex items-center gap-3 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-forge-500">
+          <img src="/images/logo.webp" width="512" height="512" alt="" class="size-12 rounded-full object-cover" loading="lazy" />
+          <span class="font-display text-2xl font-bold uppercase tracking-wide text-zinc-100">
+            Herrería <span class="text-forge-500">Tony</span>
+          </span>
+        </a>
+        <p class="mt-5 max-w-sm text-sm leading-relaxed text-zinc-400">
+          Taller familiar de herrería, fabricación de muebles, estructuras metálicas y trabajos de albañilería en Buenos Aires.
+        </p>
+        <p class="mt-4 text-xs leading-relaxed text-zinc-600">
+          Sitio informativo. Cada consulta se evalúa según medidas, materiales, ubicación y características del trabajo.
+        </p>
+      </div>
+
+      <div class="lg:col-span-2">
+        <h2 class="text-sm font-semibold text-zinc-100">Secciones</h2>
+        <ul class="mt-4 space-y-3 text-sm text-zinc-400">
+          <li><a href="/#catalogo" class="transition-colors hover:text-forge-400">Catálogo</a></li>
+          <li><a href="/#trabajos" class="transition-colors hover:text-forge-400">Trabajos</a></li>
+          <li><a href="/#boceto" class="transition-colors hover:text-forge-400">Tu idea</a></li>
+          <li><a href="/#proceso" class="transition-colors hover:text-forge-400">Proceso</a></li>
+          <li><a href="/#cotizador" class="transition-colors hover:text-forge-400">Cotizador</a></li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-3">
+        <h2 class="text-sm font-semibold text-zinc-100">Servicios</h2>
+        <ul class="mt-4 space-y-3 text-sm leading-relaxed text-zinc-400">
+          <li>Portones, rejas y cerramientos</li>
+          <li>Muebles de hierro y madera</li>
+          <li>Escaleras, techos y estructuras</li>
+          <li>Albañilería y trabajos combinados</li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-3">
+        <h2 class="text-sm font-semibold text-zinc-100">Atención al cliente</h2>
+        <div class="mt-4 space-y-4 text-sm text-zinc-400">
+          <a href={buildWhatsAppUrl()} target="_blank" rel="noopener noreferrer" class="flex items-start gap-3 transition-colors hover:text-forge-400">
+            <MessageCircle aria-hidden="true" class="mt-0.5 size-4 shrink-0 text-forge-500" />
+            <span>{siteConfig.whatsappDisplay}</span>
+          </a>
+          <div class="flex items-start gap-3">
+            <Clock3 aria-hidden="true" class="mt-0.5 size-4 shrink-0 text-forge-500" />
+            <span class="text-xs leading-relaxed">{siteConfig.workshopHours}</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <MapPin aria-hidden="true" class="mt-0.5 size-4 shrink-0 text-forge-500" />
+            <span class="text-xs leading-relaxed">{siteConfig.coverageArea}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid gap-6 pt-7 text-xs text-zinc-600 lg:grid-cols-[1fr_auto] lg:items-center">
+      <div class="flex flex-col gap-4">
+        <p>© 1980–{currentYear} {siteConfig.name}. Todos los derechos reservados.</p>
+        <nav aria-label="Información legal" class="flex flex-wrap items-center gap-x-5 gap-y-3">
+          <a href="/privacidad" class="transition-colors hover:text-zinc-300">Privacidad</a>
+          <a
+            href="https://www.argentina.gob.ar/servicio/iniciar-un-reclamo-ante-defensa-del-consumidor"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1.5 transition-colors hover:text-zinc-300"
+          >
+            Defensa del consumidor
+            <ExternalLink aria-hidden="true" class="size-3" />
+          </a>
+        </nav>
+      </div>
+
+      <div class="flex items-center gap-3 border-t border-zinc-800 pt-5 lg:border-l lg:border-t-0 lg:pl-6 lg:pt-0" aria-label="Créditos del sitio">
+        <span class="shrink-0 text-[10px] font-medium uppercase tracking-[0.16em] text-zinc-500">Desarrollado por</span>
+        <img
+          src="/images/logo-geb.png"
+          width="1600"
+          height="900"
+          alt="GEB Soluciones Digitales"
+          class="h-auto w-28 opacity-80 transition-opacity hover:opacity-100 sm:w-32"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    </div>
+  </div>
+</footer>

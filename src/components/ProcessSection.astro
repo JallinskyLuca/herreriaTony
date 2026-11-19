@@ -1,0 +1,81 @@
+---
+import { siteConfig } from '../config/site';
+---
+
+<section id="proceso" class="relative py-20 lg:py-28 bg-iron-950 border-b border-zinc-800 blueprint-pattern">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 font-mono text-xs text-forge-400 uppercase tracking-widest mb-3">
+        <span class="w-2 h-2 rounded-full bg-forge-500"></span>
+        <span>METODOLOGÍA DE TALLER</span>
+      </div>
+      <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-zinc-100 uppercase">
+        CÓMO TRABAJAMOS <span class="text-forge-500">PASO A PASO</span>
+      </h2>
+      <p class="font-mono text-xs sm:text-sm text-zinc-400 mt-4">
+        Un proceso transparente, sin demoras fantasmas y con comunicación directa con el herrero que fabrica tu pieza.
+      </p>
+    </div>
+
+    <!-- Steps Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+      {siteConfig.workSteps.map((step, idx) => (
+        <div class="relative flex flex-col justify-between rounded-xl border border-zinc-800 bg-iron-850 p-6 hover:border-forge-500/50 transition-all duration-300 cad-corner-tl group">
+          
+          <div>
+            <!-- Top Step Header -->
+            <div class="flex items-center justify-between border-b border-zinc-800 pb-3 mb-4 font-mono text-xs">
+              <span class="text-forge-500 font-bold tracking-wider">{step.code}</span>
+              <span class="px-2 py-0.5 rounded bg-zinc-900 border border-zinc-700/80 text-[10px] text-zinc-400 font-semibold">
+                {step.tag}
+              </span>
+            </div>
+
+            <!-- Big Step Number -->
+            <div class="font-display text-5xl font-bold text-zinc-800 group-hover:text-forge-500/20 transition-colors mb-2 select-none">
+              {step.step}
+            </div>
+
+            <!-- Step Title -->
+            <h3 class="font-display text-2xl font-bold text-zinc-100 uppercase tracking-wide mb-3 group-hover:text-forge-400 transition-colors">
+              {step.title}
+            </h3>
+
+            <!-- Step Description -->
+            <p class="text-xs text-zinc-300 leading-relaxed font-sans">
+              {step.description}
+            </p>
+          </div>
+
+          <!-- Bottom Micro Cad Marker -->
+          <div class="mt-6 pt-3 border-t border-zinc-800/80 flex items-center justify-between font-mono text-[10px] text-zinc-500">
+            <span>FASE 0{idx + 1} // OK</span>
+            <span class="text-forge-400 font-bold">CONTROL DE TALLER</span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Bottom Workshop Quality Stamp Banner -->
+    <div class="mt-14 p-6 rounded-xl border border-zinc-800 bg-zinc-900/80 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left font-mono text-xs">
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 rounded-full bg-forge-500/10 border border-forge-500/30 flex items-center justify-center shrink-0 text-forge-500 text-xl font-bold">
+          ★
+        </div>
+        <div>
+          <div class="text-zinc-100 font-bold uppercase tracking-wider text-sm">Materiales y Uniones de Calidad</div>
+          <div class="text-zinc-400 mt-0.5">Seleccionamos perfiles adecuados y cuidamos cada soldadura, amurado y terminación durante todo el trabajo.</div>
+        </div>
+      </div>
+      <a
+        href="#cotizador"
+        class="shrink-0 px-5 py-2.5 rounded-lg border border-forge-500/80 bg-forge-500/10 hover:bg-forge-500 hover:text-zinc-950 text-forge-400 font-bold uppercase tracking-wider transition-all"
+      >
+        Cotizar mi trabajo ahora
+      </a>
+    </div>
+
+  </div>
+</section>

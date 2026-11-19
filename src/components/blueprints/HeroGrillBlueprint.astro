@@ -1,0 +1,294 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<div class={`relative w-full overflow-hidden rounded-2xl border border-zinc-700/80 bg-iron-850/90 shadow-2xl backdrop-blur-sm cad-corner-tl ${className}`}>
+  <!-- Blueprint Title Header / Header Bar CAD -->
+  <div class="flex flex-wrap items-center justify-between gap-2 border-b border-zinc-700/80 bg-zinc-950/70 px-4 py-2.5 text-xs font-mono">
+    <div class="flex items-center gap-2">
+      <span class="inline-block w-2.5 h-2.5 rounded-full bg-forge-500 shadow-[0_0_8px_#EA580C] animate-pulse"></span>
+      <span class="text-zinc-200 font-bold tracking-wider">DWG: HT-MOD-1400-P</span>
+      <span class="hidden sm:inline text-zinc-500">|</span>
+      <span class="hidden sm:inline text-cad-cyan">PARRILLA & ASADOR A MEDIDA</span>
+    </div>
+    <div class="flex items-center gap-3 text-zinc-400 text-[11px]">
+      <span class="bg-zinc-800/80 px-2 py-0.5 rounded text-zinc-300 border border-zinc-700">ESC: 1:10</span>
+      <span class="text-forge-400 font-semibold">TOL: ±0.5mm</span>
+      <span class="hidden md:inline text-zinc-500 font-mono">AUTOCAD // 2D VECT</span>
+    </div>
+  </div>
+
+  <!-- SVG Canvas with CAD technical background grid -->
+  <div class="relative w-full aspect-[4/3] sm:aspect-[16/11] p-2 sm:p-4 blueprint-pattern overflow-hidden">
+    <!-- CAD Axis Crosshairs in Background -->
+    <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-20" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="cadGridHero" width="20" height="20" patternUnits="userSpaceOnUse">
+          <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#38BDF8" stroke-width="0.5" stroke-opacity="0.3" />
+        </pattern>
+        <pattern id="cadMajorGridHero" width="100" height="100" patternUnits="userSpaceOnUse">
+          <rect width="100" height="100" fill="url(#cadGridHero)" />
+          <path d="M 100 0 L 0 0 0 100" fill="none" stroke="#38BDF8" stroke-width="1" stroke-opacity="0.5" />
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#cadMajorGridHero)" />
+    </svg>
+
+    <!-- Main CAD Technical Drawing SVG -->
+    <svg viewBox="0 0 800 580" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full cad-svg drop-shadow-md select-none">
+      <!-- Glow Filters -->
+      <defs>
+        <filter id="forgeGlow" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="3" result="blur" />
+          <feComposite in="SourceGraphic" in2="blur" operator="over" />
+        </filter>
+        <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#38BDF8" />
+        </marker>
+        <marker id="arrowOrange" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#EA580C" />
+        </marker>
+      </defs>
+
+      <!-- GROUND LINE & DATUM -->
+      <line x1="80" y1="500" x2="720" y2="500" stroke="#71717A" stroke-width="1.5" stroke-dasharray="8 4"/>
+      <text x="730" y="504" fill="#A1A1AA" font-size="10" font-family="'JetBrains Mono', monospace">N.P.T. ±0.00</text>
+
+      <!-- ================= STRUCTURAL FRAME (Tubo 40x40x2) ================= -->
+      <!-- Left Column Outer & Inner -->
+      <rect x="180" y="160" width="18" height="340" fill="#18181B" stroke="#E4E4E7" stroke-width="2"/>
+      <line x1="184" y1="160" x2="184" y2="500" stroke="#52525B" stroke-width="1" stroke-dasharray="4 2"/>
+
+      <!-- Right Column Outer & Inner -->
+      <rect x="560" y="160" width="18" height="340" fill="#18181B" stroke="#E4E4E7" stroke-width="2"/>
+      <line x1="574" y1="160" x2="574" y2="500" stroke="#52525B" stroke-width="1" stroke-dasharray="4 2"/>
+
+      <!-- Upper Crossbeam (Puente soporte mecanismo) -->
+      <rect x="180" y="150" width="398" height="18" fill="#1C1C21" stroke="#E4E4E7" stroke-width="2"/>
+      
+      <!-- Lower Structural Crossbar (Nivel estante) -->
+      <rect x="180" y="440" width="398" height="14" fill="#1C1C21" stroke="#E4E4E7" stroke-width="1.8"/>
+
+      <!-- Base Leg Plates (Zapatas de apoyo con agujeros de anclaje) -->
+      <rect x="168" y="495" width="42" height="6" fill="#F4F4F5" stroke="#121215" stroke-width="1"/>
+      <rect x="548" y="495" width="42" height="6" fill="#F4F4F5" stroke="#121215" stroke-width="1"/>
+      <!-- Wheel or Floor Studs -->
+      <circle cx="178" cy="498" r="1.5" fill="#EA580C"/>
+      <circle cx="200" cy="498" r="1.5" fill="#EA580C"/>
+      <circle cx="558" cy="498" r="1.5" fill="#EA580C"/>
+      <circle cx="580" cy="498" r="1.5" fill="#EA580C"/>
+
+      <!-- ================= ELEVATION MECHANISM ================= -->
+      <!-- Rotating Center Axle / Eje Macizo Ø 25mm -->
+      <rect x="198" y="155" width="362" height="8" fill="#52525B" stroke="#38BDF8" stroke-width="1.2"/>
+      
+      <!-- Cable Drums / Enrolladores con cable de acero -->
+      <rect x="230" y="153" width="22" height="12" fill="#71717A" stroke="#E4E4E7" stroke-width="1"/>
+      <rect x="506" y="153" width="22" height="12" fill="#71717A" stroke="#E4E4E7" stroke-width="1"/>
+      
+      <!-- Steel Cables descending to grill frame -->
+      <line x1="241" y1="165" x2="241" y2="290" stroke="#38BDF8" stroke-width="1.5" stroke-dasharray="2 1"/>
+      <line x1="517" y1="165" x2="517" y2="290" stroke="#38BDF8" stroke-width="1.5" stroke-dasharray="2 1"/>
+
+      <!-- Cast Iron Handwheel / Volante de Elevación a la Derecha -->
+      <!-- Shaft Extension -->
+      <rect x="578" y="156" width="35" height="6" fill="#A1A1AA" stroke="#E4E4E7" stroke-width="1"/>
+      <!-- Handwheel Outer Rim -->
+      <circle cx="625" cy="159" r="32" stroke="#EA580C" stroke-width="2.5" fill="none" filter="url(#forgeGlow)"/>
+      <circle cx="625" cy="159" r="28" stroke="#F97316" stroke-width="1" stroke-dasharray="3 2" fill="none"/>
+      <!-- Wheel Hub -->
+      <circle cx="625" cy="159" r="8" fill="#EA580C" stroke="#F4F4F5" stroke-width="1.5"/>
+      <!-- Spokes (Rayos del volante) -->
+      <line x1="625" y1="127" x2="625" y2="191" stroke="#F4F4F5" stroke-width="2"/>
+      <line x1="593" y1="159" x2="657" y2="159" stroke="#F4F4F5" stroke-width="2"/>
+      <line x1="602" y1="136" x2="648" y2="182" stroke="#F4F4F5" stroke-width="1.5"/>
+      <line x1="648" y1="136" x2="602" y2="182" stroke="#F4F4F5" stroke-width="1.5"/>
+      <!-- Rotating Handle (Manivela con empuñadura de madera/acero) -->
+      <circle cx="645" cy="142" r="4.5" fill="#F4F4F5" stroke="#EA580C" stroke-width="1.5"/>
+      <!-- Locking Ratchet (Crique traba de seguridad) -->
+      <path d="M 588 148 L 598 148 L 595 154 Z" fill="#EA580C"/>
+
+      <!-- ================= MOVABLE GRILL RACK (Marco & Paños V) ================= -->
+      <!-- Main Movable Frame in Elevation -->
+      <rect x="204" y="290" width="350" height="20" fill="#1C1C21" stroke="#F4F4F5" stroke-width="2.2"/>
+      
+      <!-- V-Shaped Angle Bars Grid (Paños de ángulo en V) -->
+      <!-- Repeating angle irons with slight gap -->
+      <g stroke="#E4E4E7" stroke-width="1.8" fill="none">
+        <path d="M 212 290 L 216 305 L 220 290" />
+        <path d="M 224 290 L 228 305 L 232 290" />
+        <path d="M 236 290 L 240 305 L 244 290" />
+        <path d="M 248 290 L 252 305 L 256 290" />
+        <path d="M 260 290 L 264 305 L 268 290" />
+        <path d="M 272 290 L 276 305 L 280 290" />
+        <path d="M 284 290 L 288 305 L 292 290" />
+        <path d="M 296 290 L 300 305 L 304 290" />
+        <path d="M 308 290 L 312 305 L 316 290" />
+        <path d="M 320 290 L 324 305 L 328 290" />
+        <path d="M 332 290 L 336 305 L 340 290" />
+        <path d="M 344 290 L 348 305 L 352 290" />
+        <path d="M 356 290 L 360 305 L 364 290" />
+        <path d="M 368 290 L 372 305 L 376 290" />
+        <path d="M 380 290 L 384 305 L 388 290" />
+        <path d="M 392 290 L 396 305 L 400 290" />
+        <path d="M 404 290 L 408 305 L 412 290" />
+        <path d="M 416 290 L 420 305 L 424 290" />
+        <path d="M 428 290 L 432 305 L 436 290" />
+        <path d="M 440 290 L 444 305 L 448 290" />
+        <path d="M 452 290 L 456 305 L 460 290" />
+        <path d="M 464 290 L 468 305 L 472 290" />
+        <path d="M 476 290 L 480 305 L 484 290" />
+        <path d="M 488 290 L 492 305 L 496 290" />
+        <path d="M 500 290 L 504 305 L 508 290" />
+        <path d="M 512 290 L 516 305 L 520 290" />
+        <path d="M 524 290 L 528 305 L 532 290" />
+        <path d="M 536 290 L 540 305 L 544 290" />
+      </g>
+
+      <!-- Front Removable Grease Collector (Grasero Desmontable) -->
+      <path d="M 204 310 L 554 310 L 548 322 L 210 322 Z" fill="#2E2E36" stroke="#EA580C" stroke-width="1.5"/>
+      <text x="379" y="320" fill="#EA580C" font-size="8" font-family="'JetBrains Mono', monospace" text-anchor="middle">GRASERO INOX / DESMONTABLE</text>
+
+      <!-- Side Guide Sliders with Rollers -->
+      <rect x="198" y="285" width="6" height="30" fill="#EA580C"/>
+      <rect x="554" y="285" width="6" height="30" fill="#EA580C"/>
+
+      <!-- ================= SUSPENDED BRASERO / FOGONERO (Uruguayo) ================= -->
+      <!-- Cantilever Support Bracket attached to left post -->
+      <line x1="180" y1="260" x2="100" y2="260" stroke="#E4E4E7" stroke-width="2"/>
+      <line x1="180" y1="380" x2="100" y2="380" stroke="#E4E4E7" stroke-width="2"/>
+      <line x1="100" y1="260" x2="100" y2="380" stroke="#E4E4E7" stroke-width="2"/>
+      <!-- Diagonal Brace -->
+      <line x1="180" y1="360" x2="100" y2="280" stroke="#38BDF8" stroke-width="1.2" stroke-dasharray="3 3"/>
+      
+      <!-- Fire Basket Bars (Varillas redondas Ø 12mm) -->
+      <line x1="105" y1="270" x2="175" y2="270" stroke="#F97316" stroke-width="2"/>
+      <line x1="105" y1="295" x2="175" y2="295" stroke="#F97316" stroke-width="2"/>
+      <line x1="105" y1="320" x2="175" y2="320" stroke="#F97316" stroke-width="2"/>
+      <line x1="105" y1="345" x2="175" y2="345" stroke="#F97316" stroke-width="2"/>
+      <line x1="105" y1="370" x2="175" y2="370" stroke="#F97316" stroke-width="2.5"/>
+      <!-- Charcoal Grate vertical supports -->
+      <line x1="118" y1="265" x2="118" y2="375" stroke="#E4E4E7" stroke-width="1.5"/>
+      <line x1="138" y1="265" x2="138" y2="375" stroke="#E4E4E7" stroke-width="1.5"/>
+      <line x1="158" y1="265" x2="158" y2="375" stroke="#E4E4E7" stroke-width="1.5"/>
+
+      <!-- Flame / Ember Glow points inside brasero -->
+      <circle cx="130" cy="360" r="3" fill="#EA580C" filter="url(#forgeGlow)"/>
+      <circle cx="148" cy="355" r="4" fill="#F97316" filter="url(#forgeGlow)"/>
+      <circle cx="160" cy="362" r="2.5" fill="#EF4444"/>
+
+      <!-- Lower Wood Storage Deck (Planchuelas en bajo mesada) -->
+      <g stroke="#71717A" stroke-width="1.2">
+        <line x1="200" y1="454" x2="200" y2="480"/>
+        <line x1="230" y1="454" x2="230" y2="480"/>
+        <line x1="260" y1="454" x2="260" y2="480"/>
+        <line x1="290" y1="454" x2="290" y2="480"/>
+        <line x1="320" y1="454" x2="320" y2="480"/>
+        <line x1="350" y1="454" x2="350" y2="480"/>
+        <line x1="380" y1="454" x2="380" y2="480"/>
+        <line x1="410" y1="454" x2="410" y2="480"/>
+        <line x1="440" y1="454" x2="440" y2="480"/>
+        <line x1="470" y1="454" x2="470" y2="480"/>
+        <line x1="500" y1="454" x2="500" y2="480"/>
+        <line x1="530" y1="454" x2="530" y2="480"/>
+        <line x1="555" y1="454" x2="555" y2="480"/>
+      </g>
+
+      <!-- ================= TECHNICAL DIMENSION LINES (COTAS CAD) ================= -->
+      <!-- Dimension 1: Total Width (1400mm) at the bottom -->
+      <line x1="100" y1="530" x2="660" y2="530" stroke="#38BDF8" stroke-width="1.2" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+      <line x1="100" y1="380" x2="100" y2="540" stroke="#38BDF8" stroke-width="0.8" stroke-dasharray="2 2"/>
+      <line x1="660" y1="190" x2="660" y2="540" stroke="#38BDF8" stroke-width="0.8" stroke-dasharray="2 2"/>
+      <!-- Label Cotas Width -->
+      <rect x="330" y="520" width="100" height="18" fill="#121215" stroke="#38BDF8" stroke-width="0.8" rx="2"/>
+      <text x="380" y="533" fill="#38BDF8" font-size="11" font-weight="bold" font-family="'JetBrains Mono', monospace" text-anchor="middle">1400 mm</text>
+
+      <!-- Dimension 2: Height to Upper Beam (1180mm) at the left -->
+      <line x1="60" y1="150" x2="60" y2="500" stroke="#38BDF8" stroke-width="1.2" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+      <line x1="60" y1="150" x2="180" y2="150" stroke="#38BDF8" stroke-width="0.8" stroke-dasharray="2 2"/>
+      <line x1="60" y1="500" x2="168" y2="500" stroke="#38BDF8" stroke-width="0.8" stroke-dasharray="2 2"/>
+      <!-- Label Height -->
+      <rect x="15" y="315" width="90" height="18" fill="#121215" stroke="#38BDF8" stroke-width="0.8" rx="2" transform="rotate(-90 60 324)"/>
+      <text x="60" y="328" fill="#38BDF8" font-size="11" font-weight="bold" font-family="'JetBrains Mono', monospace" text-anchor="middle" transform="rotate(-90 60 324)">H = 1180 mm</text>
+
+      <!-- Dimension 3: Grill Depth / Slant angle (7° PENDIENTE) -->
+      <path d="M 204 290 L 250 284" stroke="#EA580C" stroke-width="1.2"/>
+      <text x="260" y="280" fill="#EA580C" font-size="10" font-family="'JetBrains Mono', monospace" font-weight="600">∠ 7° ANTIDERRAME</text>
+
+      <!-- ================= TECHNICAL ANNOTATIONS & CALLOUTS ================= -->
+      <!-- Callout 1: Volante reductor -->
+      <line x1="657" y1="140" x2="710" y2="110" stroke="#EA580C" stroke-width="1"/>
+      <line x1="710" y1="110" x2="770" y2="110" stroke="#EA580C" stroke-width="1"/>
+      <circle cx="657" cy="140" r="2.5" fill="#EA580C"/>
+      <text x="712" y="104" fill="#F4F4F5" font-size="9" font-family="'JetBrains Mono', monospace" font-weight="bold">[01] VOLANTE DE FUNDICIÓN</text>
+      <text x="712" y="119" fill="#A1A1AA" font-size="8" font-family="'JetBrains Mono', monospace">EJE Ø 25mm + TRABA RATCHET</text>
+
+      <!-- Callout 2: Paños ángulo V -->
+      <line x1="432" y1="298" x2="480" y2="240" stroke="#38BDF8" stroke-width="1"/>
+      <line x1="480" y1="240" x2="570" y2="240" stroke="#38BDF8" stroke-width="1"/>
+      <circle cx="432" cy="298" r="2.5" fill="#38BDF8"/>
+      <text x="484" y="234" fill="#F4F4F5" font-size="9" font-family="'JetBrains Mono', monospace" font-weight="bold">[02] PAÑOS EN V ENLOZADOS</text>
+      <text x="484" y="249" fill="#A1A1AA" font-size="8" font-family="'JetBrains Mono', monospace">DESMONTABLES EN MÓDULOS</text>
+
+      <!-- Callout 3: Brasero colgado -->
+      <line x1="140" y1="300" x2="110" y2="220" stroke="#EA580C" stroke-width="1"/>
+      <line x1="110" y1="220" x2="20" y2="220" stroke="#EA580C" stroke-width="1"/>
+      <circle cx="140" cy="300" r="2.5" fill="#EA580C"/>
+      <text x="25" y="214" fill="#F4F4F5" font-size="9" font-family="'JetBrains Mono', monospace" font-weight="bold">[03] FOGONERO URUGUAYO</text>
+      <text x="25" y="229" fill="#A1A1AA" font-size="8" font-family="'JetBrains Mono', monospace">VARILLA MACIZA Ø 12mm</text>
+
+      <!-- Callout 4: Estructura Pesada -->
+      <line x1="560" y1="400" x2="620" y2="400" stroke="#38BDF8" stroke-width="1"/>
+      <line x1="620" y1="400" x2="710" y2="400" stroke="#38BDF8" stroke-width="1"/>
+      <circle cx="560" cy="400" r="2.5" fill="#38BDF8"/>
+      <text x="622" y="394" fill="#F4F4F5" font-size="9" font-family="'JetBrains Mono', monospace" font-weight="bold">[04] TUBO ESTRUCTURAL</text>
+      <text x="622" y="409" fill="#A1A1AA" font-size="8" font-family="'JetBrains Mono', monospace">40x40x2.0mm ESPESOR REAL</text>
+
+      <!-- Welding Symbol (Símbolo de Soldadura Técnica) -->
+      <g transform="translate(230, 435)">
+        <path d="M 0 0 L 25 -15 L 60 -15" stroke="#EA580C" stroke-width="1" fill="none"/>
+        <line x1="25" y1="-15" x2="25" y2="-5" stroke="#EA580C" stroke-width="1"/>
+        <circle cx="25" cy="-15" r="4" stroke="#EA580C" stroke-width="1" fill="none"/>
+        <text x="32" y="-18" fill="#F97316" font-size="8" font-family="'JetBrains Mono', monospace" font-weight="bold">MIG CONT. 4mm</text>
+      </g>
+    </svg>
+
+    <!-- Bottom Technical Stamp Block / Rótulo de Plano Profesional -->
+    <div class="absolute bottom-2 right-2 sm:bottom-4 sm:right-4 border border-zinc-700 bg-zinc-950/90 p-2 sm:p-3 rounded font-mono text-[9px] sm:text-[10px] text-zinc-400 hidden sm:block max-w-[260px] shadow-lg backdrop-blur">
+      <div class="grid grid-cols-2 gap-x-3 gap-y-1 border-b border-zinc-800 pb-1.5 mb-1.5">
+        <div><span class="text-zinc-500">TALLER:</span> <strong class="text-zinc-200">HERRERÍA TONY</strong></div>
+        <div><span class="text-zinc-500">REV:</span> <span class="text-forge-400">45.0 (1980-2026)</span></div>
+        <div><span class="text-zinc-500">PROYECTO:</span> <span class="text-zinc-200">PARRILLA PATAGÓNICA</span></div>
+        <div><span class="text-zinc-500">CALIDAD:</span> <span class="text-cad-cyan">HIERRO MACIZO</span></div>
+      </div>
+      <div class="flex items-center justify-between text-zinc-500 text-[8.5px]">
+        <span>100% ARTESANAL A MEDIDA</span>
+        <span class="text-forge-500 font-bold">CONTROL CALIDAD OK</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Blueprint Feature Callouts Footer -->
+  <div class="grid grid-cols-2 sm:grid-cols-4 divide-x divide-zinc-800 border-t border-zinc-800 bg-zinc-950/80 text-xs font-mono">
+    <div class="p-2.5 sm:p-3 text-center">
+      <div class="text-[10px] text-zinc-500 uppercase tracking-wider">Espesor Mínimo</div>
+      <div class="text-zinc-200 font-bold text-sm mt-0.5">2.0 mm Real</div>
+    </div>
+    <div class="p-2.5 sm:p-3 text-center">
+      <div class="text-[10px] text-zinc-500 uppercase tracking-wider">Soldaduras</div>
+      <div class="text-zinc-200 font-bold text-sm mt-0.5">MIG / TIG Continua</div>
+    </div>
+    <div class="p-2.5 sm:p-3 text-center">
+      <div class="text-[10px] text-zinc-500 uppercase tracking-wider">Terminación</div>
+      <div class="text-zinc-200 font-bold text-sm mt-0.5">Epoxi / Enlozado</div>
+    </div>
+    <div class="p-2.5 sm:p-3 text-center">
+      <div class="text-[10px] text-zinc-500 uppercase tracking-wider">Terminación</div>
+      <div class="text-forge-400 font-bold text-sm mt-0.5">De Por Vida</div>
+    </div>
+  </div>
+</div>

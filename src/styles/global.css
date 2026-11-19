@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Oswald:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary: #121215;
+    --bg-card: #1C1C21;
+    --border-color: #2E2E36;
+    --forge-orange: #EA580C;
+    --forge-glow: #F97316;
+    --text-primary: #F4F4F5;
+    --text-secondary: #A1A1AA;
+    --cad-cyan: #38BDF8;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: #121215;
+    color: #F4F4F5;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+
+  body {
+    overflow-x: hidden;
+    background-color: #121215;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #121215;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #2E2E36;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #EA580C;
+  }
+}
+
+/* Blueprint CAD styling utilities */
+.blueprint-pattern {
+  background-color: #121215;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to right, rgba(56, 189, 248, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(56, 189, 248, 0.07) 1px, transparent 1px);
+  background-size: 20px 20px, 20px 20px, 100px 100px, 100px 100px;
+  background-position: -1px -1px;
+}
+
+.blueprint-grid-dense {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+.forge-glow-radial {
+  background: radial-gradient(circle at 50% 50%, rgba(234, 88, 12, 0.15) 0%, rgba(234, 88, 12, 0) 70%);
+}
+
+.forge-radial-ambient {
+  background: radial-gradient(circle at top right, rgba(234, 88, 12, 0.08) 0%, transparent 60%);
+}
+
+/* CAD Technical Drawing Stems and lines */
+.cad-svg text {
+  font-family: 'JetBrains Mono', monospace;
+  user-select: none;
+}
+
+/* Corner brackets CAD simulation */
+.cad-corner-tl {
+  position: relative;
+}
+.cad-corner-tl::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid #EA580C;
+  border-left: 2px solid #EA580C;
+  pointer-events: none;
+}
+.cad-corner-tl::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 8px;
+  height: 8px;
+  border-bottom: 2px solid #EA580C;
+  border-right: 2px solid #EA580C;
+  pointer-events: none;
+}
+
+/* Interactive SVG pulses */
+@keyframes cad-pulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(0.98);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.02);
+  }
+}
+
+.animate-cad-pulse {
+  animation: cad-pulse 3s infinite ease-in-out;
+}
+
+/* Progressive entrance motion. Elements stay visible when JavaScript is unavailable. */
+.scroll-reveal {
+  opacity: 0;
+  filter: blur(3px);
+  transform: translate3d(0, 24px, 0);
+  transition:
+    opacity 650ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 650ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--scroll-reveal-delay, 0ms);
+  will-change: opacity, filter, transform;
+}
+
+.scroll-reveal.is-scroll-visible {
+  opacity: 1;
+  filter: blur(0);
+  transform: translate3d(0, 0, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .scroll-reveal,
+  .scroll-reveal.is-scroll-visible {
+    opacity: 1;
+    filter: none;
+    transform: none;
+    transition: none;
+  }
+}

@@ -1,0 +1,101 @@
+---
+import '../styles/global.css';
+import { siteConfig } from '../config/site';
+import ScrollReveal from '../components/ScrollReveal.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+}
+
+const {
+  title = `${siteConfig.name} | +45 Años de Oficio en Herrería & Albañilería`,
+  description = siteConfig.shortDescription,
+  noindex = false,
+} = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site || Astro.url);
+const ogImageUrl = new URL('/og-image.jpg', canonicalUrl).toString();
+const isIndexable = Boolean(Astro.site) && !noindex;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "HomeAndConstructionBusiness",
+  "name": siteConfig.name,
+  "description": siteConfig.shortDescription,
+  "url": canonicalUrl.toString(),
+  "image": ogImageUrl,
+  "telephone": siteConfig.phone,
+  "foundingDate": "1980",
+  "areaServed": {
+    "@type": "AdministrativeArea",
+    "name": "Buenos Aires, Argentina"
+  },
+  "openingHours": "Mo-Fr 08:00-18:00, Sa 08:00-13:00",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Servicios de Herrería y Albañilería",
+    "itemListElement": siteConfig.services.map((s, idx) => ({
+      "@type": "Offer",
+      "position": idx + 1,
+      "itemOffered": {
+        "@type": "Service",
+        "name": s.title,
+        "description": s.description
+      }
+    }))
+  }
+};
+---
+
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content={isIndexable ? 'index, follow' : 'noindex, nofollow'} />
+    <link rel="canonical" href={canonicalUrl.toString()} />
+    <meta name="keywords" content="herreria tony, herreria artesanal, albanileria, portones corredizos, rejas de seguridad, escaleras metalicas, techos cincalum, estructuras metalicas, buenos aires, soldadura" />
+    <meta name="author" content="Herrería Tony" />
+    <meta name="theme-color" content="#121215" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl.toString()} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Herrería Tony — Más de 45 años domando el hierro" />
+    <meta property="og:site_name" content={siteConfig.name} />
+    <meta property="og:locale" content="es_AR" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <meta name="twitter:image:alt" content="Herrería Tony — Más de 45 años domando el hierro" />
+
+    <!-- Google Fonts Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Structured Data JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body class="bg-iron-950 text-zinc-100 antialiased selection:bg-forge-500 selection:text-zinc-950">
+    <slot />
+    <ScrollReveal />
+  </body>
+</html>

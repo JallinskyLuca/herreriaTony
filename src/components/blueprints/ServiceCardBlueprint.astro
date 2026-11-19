@@ -1,0 +1,274 @@
+---
+interface Props {
+  serviceId: string;
+  class?: string;
+}
+
+const { serviceId, class: className = '' } = Astro.props;
+---
+
+<div class={`relative w-full aspect-[16/10] bg-zinc-950/90 rounded-lg border border-zinc-800/90 overflow-hidden cad-svg p-2 select-none group-hover:border-forge-500/50 transition-colors ${className}`}>
+  <!-- Blueprint Technical Sub-Grid Background -->
+  <svg class="absolute inset-0 w-full h-full opacity-20 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <pattern id={`cardGrid-${serviceId}`} width="15" height="15" patternUnits="userSpaceOnUse">
+        <path d="M 15 0 L 0 0 0 15" fill="none" stroke="#38BDF8" stroke-width="0.5" stroke-opacity="0.25" />
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill={`url(#cardGrid-${serviceId})`} />
+  </svg>
+
+  <!-- Service Blueprint Drawing according to serviceId -->
+  {serviceId === 'parrillas-asadores' && (
+    <svg viewBox="0 0 320 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+      <!-- Outer Frame & Wheel -->
+      <rect x="30" y="40" width="10" height="130" fill="#1C1C21" stroke="#E4E4E7" stroke-width="1.5"/>
+      <rect x="250" y="40" width="10" height="130" fill="#1C1C21" stroke="#E4E4E7" stroke-width="1.5"/>
+      <rect x="30" y="35" width="230" height="8" fill="#2E2E36" stroke="#E4E4E7" stroke-width="1.5"/>
+      
+      <!-- Elevation Axle & Wheel -->
+      <rect x="40" y="37" width="210" height="4" fill="#71717A"/>
+      <circle cx="275" cy="39" r="16" stroke="#EA580C" stroke-width="1.8" fill="none"/>
+      <circle cx="275" cy="39" r="4" fill="#EA580C"/>
+      <line x1="275" y1="23" x2="275" y2="55" stroke="#EA580C" stroke-width="1.2"/>
+      <line x1="259" y1="39" x2="291" y2="39" stroke="#EA580C" stroke-width="1.2"/>
+      <circle cx="285" cy="30" r="2.5" fill="#FFF"/>
+
+      <!-- Movable V-Grill Grid -->
+      <rect x="45" y="95" width="200" height="12" fill="#18181B" stroke="#F4F4F5" stroke-width="1.5"/>
+      <!-- V Angles -->
+      <path d="M 50 95 L 53 107 L 56 95 M 62 95 L 65 107 L 68 95 M 74 95 L 77 107 L 80 95 M 86 95 L 89 107 L 92 95 M 98 95 L 101 107 L 104 95 M 110 95 L 113 107 L 116 95 M 122 95 L 125 107 L 128 95 M 134 95 L 137 107 L 140 95 M 146 95 L 149 107 L 152 95 M 158 95 L 161 107 L 164 95 M 170 95 L 173 107 L 176 95 M 182 95 L 185 107 L 188 95 M 194 95 L 197 107 L 200 95 M 206 95 L 209 107 L 212 95 M 218 95 L 221 107 L 224 95 M 230 95 L 233 107 L 236 95" stroke="#E4E4E7" stroke-width="1.2" fill="none"/>
+      
+      <!-- Grease collector trough -->
+      <path d="M 45 107 L 245 107 L 240 115 L 50 115 Z" fill="#2E2E36" stroke="#EA580C" stroke-width="1.2"/>
+      
+      <!-- Steel Cables -->
+      <line x1="60" y1="41" x2="60" y2="95" stroke="#38BDF8" stroke-width="1.2" stroke-dasharray="2 1"/>
+      <line x1="225" y1="41" x2="225" y2="95" stroke="#38BDF8" stroke-width="1.2" stroke-dasharray="2 1"/>
+
+      <!-- Technical Cotas -->
+      <line x1="45" y1="135" x2="245" y2="135" stroke="#38BDF8" stroke-width="0.8"/>
+      <line x1="45" y1="130" x2="45" y2="140" stroke="#38BDF8" stroke-width="0.8"/>
+      <line x1="245" y1="130" x2="245" y2="140" stroke="#38BDF8" stroke-width="0.8"/>
+      <text x="145" y="132" fill="#38BDF8" font-size="9" text-anchor="middle" font-family="'JetBrains Mono', monospace">MOD. 1200mm</text>
+      <text x="50" y="25" fill="#A1A1AA" font-size="8" font-family="'JetBrains Mono', monospace">// DETALLE ELEVACIÓN & ENLOZADO</text>
+    </svg>
+  )}
+
+  {serviceId === 'mesas-muebles-industriales' && (
+    <svg viewBox="0 0 320 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+      <!-- Wood Table Top Mock (Plano superior) -->
+      <rect x="25" y="45" width="270" height="12" rx="1" fill="#27272A" stroke="#71717A" stroke-width="1.2"/>
+      <line x1="25" y1="51" x2="295" y2="51" stroke="#52525B" stroke-width="0.8" stroke-dasharray="8 4"/>
+
+      <!-- Heavy Structural Steel Legs (Patas en Tubo 80x40 / Perfil Trapecio o X) -->
+      <!-- Left Trapezoid Leg -->
+      <polygon points="50,57 75,57 95,160 65,160" fill="#1C1C21" stroke="#E4E4E7" stroke-width="1.5"/>
+      <line x1="72" y1="57" x2="90" y2="160" stroke="#52525B" stroke-width="1" stroke-dasharray="4 2"/>
+      <!-- Right Trapezoid Leg -->
+      <polygon points="265,57 240,57 220,160 250,160" fill="#1C1C21" stroke="#E4E4E7" stroke-width="1.5"/>
+      <line x1="243" y1="57" x2="225" y2="160" stroke="#52525B" stroke-width="1" stroke-dasharray="4 2"/>
+
+      <!-- Center Cross Stiffener Stretcher Beam -->
+      <rect x="80" y="140" width="155" height="10" fill="#1C1C21" stroke="#E4E4E7" stroke-width="1.5"/>
+      
+      <!-- Top Perforated Mounting Flange with Counterbored Screws -->
+      <rect x="42" y="57" width="40" height="4" fill="#EA580C"/>
+      <rect x="233" y="57" width="40" height="4" fill="#EA580C"/>
+      <circle cx="52" cy="59" r="1.5" fill="#FFF"/>
+      <circle cx="72" cy="59" r="1.5" fill="#FFF"/>
+      <circle cx="243" cy="59" r="1.5" fill="#FFF"/>
+      <circle cx="263" cy="59" r="1.5" fill="#FFF"/>
+
+      <!-- Dimension Lines -->
+      <line x1="25" y1="35" x2="295" y2="35" stroke="#38BDF8" stroke-width="0.8"/>
+      <line x1="25" y1="30" x2="25" y2="40" stroke="#38BDF8" stroke-width="0.8"/>
+      <line x1="295" y1="30" x2="295" y2="40" stroke="#38BDF8" stroke-width="0.8"/>
+      <text x="160" y="32" fill="#38BDF8" font-size="9" text-anchor="middle" font-family="'JetBrains Mono', monospace">L = 2200 mm</text>
+
+      <line x1="15" y1="45" x2="15" y2="160" stroke="#EA580C" stroke-width="0.8"/>
+      <text x="18" y="105" fill="#EA580C" font-size="8" font-family="'JetBrains Mono', monospace" transform="rotate(-90 18 105)">H = 750 mm</text>
+      <text x="160" y="180" fill="#A1A1AA" font-size="8" text-anchor="middle" font-family="'JetBrains Mono', monospace">TUBO ESTRUCTURAL 80x40x2mm // TAPA BULONADA</text>
+    </svg>
+  )}
+
+  {serviceId === 'proyectos-a-pedido' && (
+    <svg viewBox="0 0 320 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+      <!-- Architectural Pergola / Custom Structure Blueprint -->
+      <!-- Wall Flange Anchors -->
+      <rect x="30" y="45" width="8" height="40" fill="#E4E4E7" stroke="#121215"/>
+      <circle cx="34" cy="52" r="1.5" fill="#EA580C"/>
+      <circle cx="34" cy="78" r="1.5" fill="#EA580C"/>
+
+      <!-- Horizontal Main Steel Beam (Viga Perfil UPN / Doble T) -->
+      <rect x="38" y="55" width="230" height="14" fill="#1C1C21" stroke="#F4F4F5" stroke-width="1.5"/>
+      
+      <!-- Outrigger Rafters (Vigas transversales espaciadas) -->
+      <g stroke="#E4E4E7" stroke-width="1.2">
+        <line x1="60" y1="48" x2="60" y2="76"/>
+        <line x1="95" y1="48" x2="95" y2="76"/>
+        <line x1="130" y1="48" x2="130" y2="76"/>
+        <line x1="165" y1="48" x2="165" y2="76"/>
+        <line x1="200" y1="48" x2="200" y2="76"/>
+        <line x1="235" y1="48" x2="235" y2="76"/>
+      </g>
+
+      <!-- Front Steel Pillar Column -->
+      <rect x="255" y="69" width="12" height="100" fill="#1C1C21" stroke="#E4E4E7" stroke-width="1.5"/>
+      <!-- Gusset Plate Bracket (Cartela triangular de refuerzo) -->
+      <polygon points="255,69 235,69 255,89" fill="#EA580C" stroke="#EA580C"/>
+      
+      <!-- Turnbuckle Tie Rod (Tensor diagonal de acero con tensor roscado) -->
+      <line x1="38" y1="85" x2="180" y2="55" stroke="#38BDF8" stroke-width="1.2" stroke-dasharray="3 2"/>
+      <circle cx="109" cy="70" r="3" fill="#38BDF8"/>
+
+      <!-- Base Shoe Plate -->
+      <rect x="245" y="169" width="32" height="6" fill="#F4F4F5" stroke="#121215"/>
+      <circle cx="251" cy="172" r="1.5" fill="#EA580C"/>
+      <circle cx="271" cy="172" r="1.5" fill="#EA580C"/>
+
+      <text x="35" y="32" fill="#EA580C" font-size="8" font-family="'JetBrains Mono', monospace">PROYECTO ESPECIAL // PLANO CAD PERSONALIZADO</text>
+      <text x="160" y="185" fill="#38BDF8" font-size="8" font-family="'JetBrains Mono', monospace" text-anchor="middle">DETALLE ANCLAJE CARTELA + TENSOR</text>
+    </svg>
+  )}
+
+  {serviceId === 'portones-aberturas' && (
+    <svg viewBox="0 0 320 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+      <!-- Sliding Gate Frame (Bastidor perimetral en tubo 80x40) -->
+      <rect x="35" y="40" width="245" height="110" fill="#18181B" stroke="#E4E4E7" stroke-width="2"/>
+      
+      <!-- Inner Vertical Slats (Perfiles tubulares verticales espaciados) -->
+      <g stroke="#71717A" stroke-width="1.2">
+        <line x1="60" y1="40" x2="60" y2="150"/>
+        <line x1="85" y1="40" x2="85" y2="150"/>
+        <line x1="110" y1="40" x2="110" y2="150"/>
+        <line x1="135" y1="40" x2="135" y2="150"/>
+        <line x1="160" y1="40" x2="160" y2="150"/>
+        <line x1="185" y1="40" x2="185" y2="150"/>
+        <line x1="210" y1="40" x2="210" y2="150"/>
+        <line x1="235" y1="40" x2="235" y2="150"/>
+        <line x1="260" y1="40" x2="260" y2="150"/>
+      </g>
+
+      <!-- Diagonal Structural Stiffener (Cruz antitorsión) -->
+      <line x1="35" y1="40" x2="280" y2="150" stroke="#EA580C" stroke-width="1.2" stroke-dasharray="3 3"/>
+
+      <!-- Lower Inverted-V Ground Track -->
+      <line x1="15" y1="162" x2="305" y2="162" stroke="#E4E4E7" stroke-width="2"/>
+      <polygon points="80,162 85,157 90,162" fill="#EA580C"/>
+      <polygon points="225,162 230,157 235,162" fill="#EA580C"/>
+
+      <!-- Cast Iron Grooved Wheels with Ball Bearings (Ruedas de acero con rulemán) -->
+      <circle cx="85" cy="153" r="6" fill="#1C1C21" stroke="#F4F4F5" stroke-width="1.5"/>
+      <circle cx="85" cy="153" r="2" fill="#EA580C"/>
+      <circle cx="230" cy="153" r="6" fill="#1C1C21" stroke="#F4F4F5" stroke-width="1.5"/>
+      <circle cx="230" cy="153" r="2" fill="#EA580C"/>
+
+      <!-- Lock Housing (Caja para cerradura de seguridad) -->
+      <rect x="268" y="85" width="12" height="25" fill="#EA580C" rx="1"/>
+      <line x1="280" y1="97" x2="286" y2="97" stroke="#FFF" stroke-width="1.5"/>
+
+      <!-- Dimension and Arrow Movement -->
+      <path d="M 120 28 L 200 28" stroke="#38BDF8" stroke-width="1.2"/>
+      <polygon points="205,28 198,25 198,31" fill="#38BDF8"/>
+      <text x="160" y="24" fill="#38BDF8" font-size="8" font-family="'JetBrains Mono', monospace" text-anchor="middle">CORREDERA AUTOMATIZABLE</text>
+      <text x="160" y="185" fill="#A1A1AA" font-size="8" font-family="'JetBrains Mono', monospace" text-anchor="middle">GUÍA SUP. CON RODILLOS DE NYLON ANTI-RUIDO</text>
+    </svg>
+  )}
+
+  {serviceId === 'rejas-frentes' && (
+    <svg viewBox="0 0 320 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+      <!-- Security Window Grille / Front Fence Section -->
+      <!-- Frame Border -->
+      <rect x="40" y="35" width="240" height="130" fill="none" stroke="#E4E4E7" stroke-width="1.8"/>
+
+      <!-- Horizontal Punched Flat Bars (Planchuelas pasantes perforadas) -->
+      <rect x="40" y="65" width="240" height="8" fill="#2E2E36" stroke="#EA580C" stroke-width="1"/>
+      <rect x="40" y="115" width="240" height="8" fill="#2E2E36" stroke="#EA580C" stroke-width="1"/>
+
+      <!-- Solid Vertical Bars (Hierro macizo 1/2" pasante) -->
+      <g stroke="#F4F4F5" stroke-width="1.8">
+        <line x1="60" y1="25" x2="60" y2="175"/>
+        <line x1="85" y1="25" x2="85" y2="175"/>
+        <line x1="110" y1="25" x2="110" y2="175"/>
+        <line x1="135" y1="25" x2="135" y2="175"/>
+        <line x1="160" y1="25" x2="160" y2="175"/>
+        <line x1="185" y1="25" x2="185" y2="175"/>
+        <line x1="210" y1="25" x2="210" y2="175"/>
+        <line x1="235" y1="25" x2="235" y2="175"/>
+        <line x1="260" y1="25" x2="260" y2="175"/>
+      </g>
+
+      <!-- Welded Intersection Points (Puntos de soldadura pasante) -->
+      <g fill="#EA580C">
+        <circle cx="60" cy="69" r="2"/>
+        <circle cx="110" cy="69" r="2"/>
+        <circle cx="160" cy="69" r="2"/>
+        <circle cx="210" cy="69" r="2"/>
+        <circle cx="260" cy="69" r="2"/>
+        <circle cx="60" cy="119" r="2"/>
+        <circle cx="110" cy="119" r="2"/>
+        <circle cx="160" cy="119" r="2"/>
+        <circle cx="210" cy="119" r="2"/>
+        <circle cx="260" cy="119" r="2"/>
+      </g>
+
+      <!-- Expandable Wall Anchors (Grampas de amurado amoladas y dobladas) -->
+      <!-- Left side anchors -->
+      <path d="M 40 60 L 20 60 L 15 50" stroke="#38BDF8" stroke-width="1.5" fill="none"/>
+      <path d="M 40 130 L 20 130 L 15 140" stroke="#38BDF8" stroke-width="1.5" fill="none"/>
+      <!-- Right side anchors -->
+      <path d="M 280 60 L 300 60 L 305 50" stroke="#38BDF8" stroke-width="1.5" fill="none"/>
+      <path d="M 280 130 L 300 130 L 305 140" stroke="#38BDF8" stroke-width="1.5" fill="none"/>
+
+      <text x="160" y="18" fill="#EA580C" font-size="8" font-family="'JetBrains Mono', monospace" text-anchor="middle">HIERRO MACIZO CUADRADO 1/2" PASANTE</text>
+      <text x="160" y="190" fill="#38BDF8" font-size="8" font-family="'JetBrains Mono', monospace" text-anchor="middle">ANCLAJE DE SEGURIDAD EMPOTRADO ANTIPALANCA</text>
+    </svg>
+  )}
+
+  {serviceId === 'estructuras-reparaciones' && (
+    <svg viewBox="0 0 320 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+      <!-- Steel Stringer Staircase & Structural Profile -->
+      <!-- Top Floor Level Line -->
+      <line x1="20" y1="40" x2="120" y2="40" stroke="#71717A" stroke-width="1.2" stroke-dasharray="4 2"/>
+      <!-- Bottom Floor Level Line -->
+      <line x1="180" y1="170" x2="300" y2="170" stroke="#71717A" stroke-width="1.2" stroke-dasharray="4 2"/>
+
+      <!-- Diagonal Structural Stringer (Zanca metálica en perfil UPN 120/140) -->
+      <path d="M 40 40 L 70 40 L 250 170 L 220 170 Z" fill="#1C1C21" stroke="#E4E4E7" stroke-width="1.8"/>
+
+      <!-- Stair Treads with Anti-Slip Pattern (Escalones en chapa semilla de melón o plegada) -->
+      <!-- Step 1 -->
+      <polygon points="65,40 100,40 100,47 65,47" fill="#2E2E36" stroke="#EA580C" stroke-width="1.2"/>
+      <!-- Step 2 -->
+      <polygon points="95,65 130,65 130,72 95,72" fill="#2E2E36" stroke="#EA580C" stroke-width="1.2"/>
+      <!-- Step 3 -->
+      <polygon points="125,90 160,90 160,97 125,97" fill="#2E2E36" stroke="#EA580C" stroke-width="1.2"/>
+      <!-- Step 4 -->
+      <polygon points="155,115 190,115 190,122 155,122" fill="#2E2E36" stroke="#EA580C" stroke-width="1.2"/>
+      <!-- Step 5 -->
+      <polygon points="185,140 220,140 220,147 185,147" fill="#2E2E36" stroke="#EA580C" stroke-width="1.2"/>
+
+      <!-- Handrail and Balusters (Baranda tubular) -->
+      <line x1="45" y1="10" x2="225" y2="135" stroke="#F4F4F5" stroke-width="1.8"/>
+      <!-- Balusters -->
+      <line x1="75" y1="30" x2="75" y2="40" stroke="#38BDF8" stroke-width="1.2"/>
+      <line x1="105" y1="52" x2="105" y2="65" stroke="#38BDF8" stroke-width="1.2"/>
+      <line x1="135" y1="73" x2="135" y2="90" stroke="#38BDF8" stroke-width="1.2"/>
+      <line x1="165" y1="94" x2="165" y2="115" stroke="#38BDF8" stroke-width="1.2"/>
+      <line x1="195" y1="115" x2="195" y2="140" stroke="#38BDF8" stroke-width="1.2"/>
+
+      <!-- Slope Angle Callout -->
+      <path d="M 220 170 A 30 30 0 0 1 200 155" stroke="#38BDF8" stroke-width="1" fill="none"/>
+      <text x="215" y="160" fill="#38BDF8" font-size="8" font-family="'JetBrains Mono', monospace">37°</text>
+
+      <text x="140" y="24" fill="#EA580C" font-size="8" font-family="'JetBrains Mono', monospace">VIGAS UPN // HUELLA & CONTRAHUELLA</text>
+      <text x="160" y="190" fill="#A1A1AA" font-size="8" font-family="'JetBrains Mono', monospace" text-anchor="middle">CÁLCULO ESTRUCTURAL DE CARGA Y RIGIDEZ</text>
+    </svg>
+  )}
+
+  <!-- CAD Coordinate Tag on Bottom Right -->
+  <div class="absolute bottom-1 right-1.5 font-mono text-[8.5px] text-zinc-500 bg-zinc-900/90 px-1.5 py-0.5 rounded border border-zinc-800">
+    <span class="text-forge-400">ISO</span> • VECT 1:1
+  </div>
+</div>
